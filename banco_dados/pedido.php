@@ -1,3 +1,18 @@
+<?php
+    include("conexao.php"); // Arquivo PHP referente ao banco de dados
+    if (isset ($_POST['bt_nome'])){
+        // Início do campo de variáveis
+        $nome = $_POST['bt_nome'];
+        $endereco = $_POST['bt_endereco'];
+        $telefone = $_POST['bt_telefone'];
+        $pedido = $_POST['bt_pedido'];
+        // Fim do campo de variáveis
+        $mysqli -> query("INSERT INTO pedido (nome, endereco, telefone, pedido) values ('$nome', '$endereco', '$telefone', '$pedido')") or
+        die ($mysqli->error);
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,26 +27,26 @@
 <body>
     <div class="container">
         <h1>Tela de Pedidos do Buteco do Nunes</h1>
-        <form action="">
+        <form action="" method = "post">
             <div class="mb-3">
                 <label for="">Nome:</label>
-                <input type="text">
+                <input type="text" class="form-control" name = "bt_nome">
             </div>
             <div class="mb-3">
                 <label for="">Endereço:</label>
-                <input type="text">
+                <input type="text" class="form-control" name = "bt_endereco">
             </div>
             <div class="mb-3">
                 <label for="">Telefone:</label>
-                <input type="text">
+                <input type="text" class="form-control" name = "bt_telefone">
             </div>
             <div class="mb-3">
                 <label for="">Seu pedido:</label>
-                <input type="text">
+                <input type="text" class="form-control" name = "bt_pedido">
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-success" value="Realizar pedido">
-                <input type="reset" class="btn btn-danger" value="Cancelar">
+                <a class="btn btn-danger" href="index.php">Cancelar</a>
             </div>
         </form>
     </div>
